@@ -1,3 +1,74 @@
 <resources>
-    <string name="app_name">RecipeFinderKotlinVersion</string>
+    <string name="app_name">RecipeFinder</string>
+    <string name="search_app_id">75347af5</string>
+    <string name="search_app_key">c12154e41f974c51a56fad5a256c27f2</string>
+    <string name="analyse_app_id">d07b5508</string>
+    <string name="analyse_app_key">b45686d25ac88da90a36f286122ee3de</string>
+
+    <!-- Bottom Navigation -->
+    <string name="navigation_title_analyse">Analyze</string>
+    <string name="navigation_title_search">Search</string>
+    <string name="navigation_title_favorites">Favorites</string>
+
+    <string name="title_recipe_analysing_details">Recipe analysing details</string>
+
+    <string name="tab_nutrition_analysis">Nutrition</string>
+    <string name="tab_recipe_analysis">Recipe</string>
+
+    <string name="hint_search">Search…</string>
+    <string name="hint_ingredient_analysis">Ingredient for analysis</string>
+    <string name="label_health_labels">Health labels</string>
+    <string name="label_diet_labels">Diet labels</string>
+    <string name="label_ingredients">Ingredients</string>
+    <string name="label_search">Find your recipe!</string>
+    <string name="label_search_nothing_found">Nothing. Try again.</string>
+
+    <string name="btn_apply_filter">apply</string>
+    <string name="dialog_title_filter">Filter Nutrition</string>
+    <string name="spinner_label_diet_label">Diet label</string>
+    <string name="spinner_label_health_label">Health label</string>
+    <string name="label_no_favorites">You have no favorites yet</string>
+    <string name="btn_analyze">Analyze</string>
+    <string name="btn_add">add</string>
+    <string name="btn_add_ingredient">add ingredient</string>
+    <string name="no_ingredients_error_title">No Ingredients</string>
+    <string name="no_ingredients_error_message">Add at least one ingredient</string>
+
+    <string name="calories">Calories: %1$d</string>
+    <string name="total_weight">Total weight: %1$s</string>
+    <string name="yields">Yields: %1$s</string>
+
+    <string name="shared_image_prefix">sharedImage%1$s</string>
+    <string name="ingredient_item" formatted="true">%1$s; Weight: %2$s</string>
+    <string name="ingredient_order_number" formatted="true">%1$d)</string>
+    <string name="label_balance">Balance</string>
+    <string name="protein_label">protein</string>
+    <string name="label_carbs">carbs</string>
+    <string name="fat_label">fat</string>
+    <string name="error_title_technical">Technical error</string>
+    <string name="error_message_technical">Server error. Try again later.</string>
+    <string name="error_message_common">Something went wrong.</string>
+    <string name="error_message_connection">Seems to be a problem with your internet connection.</string>
+    <string name="error_title_common">Error</string>
+    <string name="error_empty_ingredient_field">Fill in the ingredient field</string>
+    <string name="content_tag">content</string>
+    <string name="btn_fill_in">Fill in</string>
+
+    <string-array name="diet_labels_prompt">
+        <item>Balanced</item>
+        <item>High-Fiber</item>
+        <item>High-Protein</item>
+        <item>Low-Carb</item>
+        <item>Low-Fat</item>
+        <item>Low-Sodium</item>
+    </string-array>
+
+    <string-array name="health_labels_prompt">
+        <item>Alcohol-free</item>
+        <item>Vegan</item>
+        <item>Vegetarian</item>
+        <item>paleo</item>
+        <item>Peanut-free</item>
+        <item>Tree-nut-free</item>
+    </string-array>
 </resources>

@@ -1,0 +1,51 @@
+package com.mlsdev.recipefinder.kotlinversion.view.favoriterecipes
+
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
+import android.content.Context
+import android.databinding.ObservableInt
+import android.view.View
+import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
+import com.mlsdev.recipefinder.kotlinversion.data.source.repository.DataRepository
+import com.mlsdev.recipefinder.kotlinversion.view.listener.OnDataLoadedListener
+import com.mlsdev.recipefinder.kotlinversion.view.viewmodel.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
+
+class FavoritesViewModel @Inject
+constructor(context: Context, override var repository: DataRepository) : BaseViewModel(context), LifecycleObserver {
+    private lateinit var onDataLoadedListener: OnDataLoadedListener<List<Recipe>>
+    val emptyViewVisibility = ObservableInt(View.VISIBLE)
+
+    fun setOnDataLoadedListener(onDataLoadedListener: OnDataLoadedListener<List<Recipe>>) {
+        this.onDataLoadedListener = onDataLoadedListener
+    }
+
+    override fun onStop() {
+        super.onStop()
+        subscriptions.clear()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun start() {
+        getFavoriteRecipes()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun stop() {
+    }
+
+    private fun getFavoriteRecipes() {
+        val disposable = repository.getFavoriteRecipes()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    emptyViewVisibility.set(if (it.isEmpty()) View.VISIBLE else View.INVISIBLE)
+                    onDataLoadedListener.onDataLoaded(it)
+                })
+
+        subscriptions.add(disposable)
+    }
+}

@@ -1,8 +1,10 @@
-![Travis-ci](https://api.travis-ci.org/MLSDev/RecipeFinder.svg)
+![Travis-ci](https://api.travis-ci.org/MLSDev/RecipeFinderKotlinVersion.svg)
 
-# RecipeFinder
+# RecipeFinder 
 
 This is a sample app with **MVVM**, **RxJava** and **Data Binding**
+
+## [Java version](https://github.com/MLSDev/RecipeFinderJavaVersion)
 
 ## Authors
 * [Sergey Petrosyuk](mailto:petrosyuk@mlsdev.com), MLSDev 

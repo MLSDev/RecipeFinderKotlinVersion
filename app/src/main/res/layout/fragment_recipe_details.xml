@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mlsdev.recipefinder.kotlinversion.view.recipedetails.RecipeViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="10dp"
+                app:expandedTitleMarginStart="10dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <ImageView
+                    android:id="@+id/iv_recipe_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:foreground="@drawable/recipe_item_title_bg"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{viewModel.recipeImageUrl}"
+                    app:layout_collapseMode="parallax" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="@{viewModel.recipeTitle}" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <android.support.v7.widget.CardView style="@style/RecipeDetailsBlockStyle">
+
+                    <RelativeLayout style="@style/RecipeDetailsBlockTextWrapperStyle">
+
+                        <TextView
+                            android:id="@+id/tv_balance_label"
+                            style="@style/BaseTextViewStyle.RecipeLabelStyle"
+                            android:text="@string/label_balance" />
+
+                        <TextView
+                            android:id="@+id/tv_protein_label"
+                            style="@style/BaseTextViewStyle.BalanceLabelStyle"
+                            android:layout_below="@id/tv_balance_label"
+                            android:text="@string/protein_label" />
+
+                        <TextView
+                            android:id="@+id/tv_carbs_label"
+                            style="@style/BaseTextViewStyle.BalanceLabelStyle"
+                            android:layout_below="@id/tv_protein_label"
+                            android:text="@string/label_carbs" />
+
+                        <TextView
+                            android:id="@+id/tv_fat_label"
+                            style="@style/BaseTextViewStyle.BalanceLabelStyle"
+                            android:layout_below="@id/tv_carbs_label"
+                            android:text="@string/fat_label" />
+
+                        <android.support.v4.widget.ContentLoadingProgressBar
+                            android:id="@+id/pb_protein_progress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:progressDrawable="@drawable/progress_drawable"
+                            android:layout_alignTop="@id/tv_protein_label"
+                            android:layout_marginTop="6dp"
+                            android:layout_toLeftOf="@id/tv_protein_label"
+                            android:layout_toStartOf="@id/tv_protein_label"
+                            android:indeterminate="false"
+                            android:max="100"
+                            app:progressValue="@{viewModel.proteinProgressValue}" />
+
+                        <android.support.v4.widget.ContentLoadingProgressBar
+                            android:id="@+id/pb_carbs_progress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:progressDrawable="@drawable/progress_drawable"
+                            android:layout_alignTop="@id/tv_carbs_label"
+                            android:layout_marginTop="6dp"
+                            android:layout_toLeftOf="@id/tv_carbs_label"
+                            android:layout_toStartOf="@id/tv_carbs_label"
+                            android:indeterminate="false"
+                            android:max="100"
+                            app:progressValue="@{viewModel.carbsProgressValue}" />
+
+                        <android.support.v4.widget.ContentLoadingProgressBar
+                            android:id="@+id/pb_fat_progress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:progressDrawable="@drawable/progress_drawable"
+                            android:layout_alignTop="@id/tv_fat_label"
+                            android:layout_marginTop="6dp"
+                            android:layout_toLeftOf="@id/tv_fat_label"
+                            android:layout_toStartOf="@id/tv_fat_label"
+                            android:indeterminate="false"
+                            android:max="100"
+                            app:progressValue="@{viewModel.fatProgressValue}" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView style="@style/RecipeDetailsBlockStyle">
+
+                    <LinearLayout style="@style/RecipeDetailsBlockTextWrapperStyle">
+
+                        <TextView
+                            style="@style/BaseTextViewStyle.RecipeLabelStyle"
+                            android:text="@string/label_health_labels" />
+
+                        <TextView
+                            android:id="@+id/tv_health_labels"
+                            style="@style/BaseTextViewStyle"
+                            android:text="@{viewModel.recipeHealthLabels}"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView style="@style/RecipeDetailsBlockStyle">
+
+                    <LinearLayout style="@style/RecipeDetailsBlockTextWrapperStyle">
+
+                        <TextView
+                            style="@style/BaseTextViewStyle.RecipeLabelStyle"
+                            android:text="@string/label_diet_labels" />
+
+                        <TextView
+                            android:id="@+id/tv_diet_labels"
+                            style="@style/BaseTextViewStyle"
+                            android:text="@{viewModel.recipeDietLabels}"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView style="@style/RecipeDetailsBlockStyle">
+
+                    <LinearLayout style="@style/RecipeDetailsBlockTextWrapperStyle">
+
+                        <TextView
+                            style="@style/BaseTextViewStyle.RecipeLabelStyle"
+                            android:text="@string/label_ingredients" />
+
+                        <TextView
+                            android:id="@+id/tv_ingredients"
+                            style="@style/BaseTextViewStyle"
+                            android:text="@{viewModel.recipeIngredients}"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favorite"
+            android:layout_width="@dimen/appbar_height"
+            android:layout_height="@dimen/appbar_height"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:onClick="@{viewModel.onFavoriteButtonClick}"
+            android:scaleType="centerInside"
+            android:src="@{viewModel.favoriteImageStateChecked ? @drawable/ic_favorite_checked : @drawable/ic_favorite_normal}"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|end|right" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
