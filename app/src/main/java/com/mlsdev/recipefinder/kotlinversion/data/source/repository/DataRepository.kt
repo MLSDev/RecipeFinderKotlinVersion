@@ -24,10 +24,11 @@ class DataRepository(local: DataSource, remote: DataSource) {
         if (!cacheIsDirty)
             return Single.just(cachedRecipes)
 
+        from = 0
         more = true
         cachedRecipes = ArrayList()
 
-        params[ParameterKeys.FROM] = String().plus("0")
+        params[ParameterKeys.FROM] = from.toString()
         params[ParameterKeys.TO] = offset.toString()
 
         return getRecipes(params)
@@ -50,10 +51,11 @@ class DataRepository(local: DataSource, remote: DataSource) {
                     val recipes: MutableList<Recipe> = ArrayList()
                     t.hits.mapTo(recipes) { it.recipe }
                     cachedRecipes = recipes
-
                     recipes as List<Recipe>
                 }
                 .doOnSuccess {
+                    from += it.size
+                    to = from + offset
                     cacheIsDirty = false
                 }
 
