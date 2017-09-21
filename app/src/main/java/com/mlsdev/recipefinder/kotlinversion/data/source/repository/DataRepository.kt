@@ -13,11 +13,10 @@ import io.reactivex.SingleSource
 class DataRepository(local: DataSource, remote: DataSource) {
     private val offset = 10
     private var from = 0
-    private var to = 0
     private var more = true
     private var localDataSource: DataSource = local
     private var remoteDataSource: DataSource = remote
-    private var cachedRecipes: List<Recipe> = ArrayList()
+    private var cachedRecipes: MutableList<Recipe> = ArrayList()
     var cacheIsDirty = false
 
     fun searchRecipes(params: MutableMap<String, String>): Single<List<Recipe>> {
@@ -40,8 +39,7 @@ class DataRepository(local: DataSource, remote: DataSource) {
             return Single.amb(ArrayList<SingleSource<List<Recipe>>>())
 
         params[ParameterKeys.FROM] = from.toString()
-        params[ParameterKeys.TO] = to.toString()
-
+        params[ParameterKeys.TO] = (from + offset).toString()
         return getRecipes(params)
     }
 
@@ -49,13 +47,15 @@ class DataRepository(local: DataSource, remote: DataSource) {
         return remoteDataSource.searchRecipes(params)
                 .map { t ->
                     val recipes: MutableList<Recipe> = ArrayList()
-                    t.hits.mapTo(recipes) { it.recipe }
-                    cachedRecipes = recipes
+
+                    t.hits.filter { !cachedRecipes.any { recipe -> recipe.uri == it.recipe.uri } }
+                            .mapTo(recipes) { it.recipe }
+
+                    cachedRecipes.addAll(recipes)
+                    from += offset - (t.hits.size - recipes.size)
                     recipes as List<Recipe>
                 }
                 .doOnSuccess {
-                    from += it.size
-                    to = from + offset
                     cacheIsDirty = false
                 }
 

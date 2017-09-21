@@ -36,7 +36,7 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
     private val searchParams = ArrayMap<String, String>()
     val isSearchOpened = ObservableBoolean(false)
     private var query = ""
-    private val recipes = ArrayList<Recipe>()
+//    private val recipes = ArrayList<Recipe>()
 
     fun setOnDataLoadedListener(onDataLoadedListener: OnDataLoadedListener<List<Recipe>>) {
         this.onDataLoadedListener = onDataLoadedListener
@@ -53,10 +53,8 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
     }
 
     private fun populateRecipeList() {
-        if (!recipes.isEmpty()) {
-            onDataLoadedListener.onDataLoaded(recipes)
-            searchLabelVisibility.set(View.INVISIBLE)
-        }
+        repository.cacheIsDirty = false
+        searchRecipes(query, false)
     }
 
     /**
@@ -86,13 +84,11 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
                 .subscribe(object : SearchRecipesObserver<List<Recipe>>() {
                     override fun onSuccess(recipeList: List<Recipe>) {
                         actionListener!!.showProgressDialog(false, null)
-                        recipes.clear()
-                        recipes.addAll(recipeList)
                         val commonSearchLabelText = context.getString(R.string.label_search)
                         val nothingFoundText = context.getString(R.string.label_search_nothing_found)
-                        searchLabelText.set(if (recipes.isEmpty()) nothingFoundText else commonSearchLabelText)
-                        searchLabelVisibility.set(if (recipes.isEmpty()) View.VISIBLE else View.INVISIBLE)
-                        populateRecipeList()
+                        searchLabelText.set(if (recipeList.isEmpty()) nothingFoundText else commonSearchLabelText)
+                        searchLabelVisibility.set(if (recipeList.isEmpty()) View.VISIBLE else View.INVISIBLE)
+                        onDataLoadedListener.onDataLoaded(recipeList)
                     }
                 })
     }
@@ -108,9 +104,7 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : SearchRecipesObserver<List<Recipe>>() {
                     override fun onSuccess(recipeList: List<Recipe>) {
-                        onDataLoadedListener.onMoreDataLoaded(recipes)
-                        recipes.clear()
-                        recipes.addAll(recipeList)
+                        onDataLoadedListener.onMoreDataLoaded(recipeList)
                     }
                 })
 

@@ -69,11 +69,11 @@ open class RecipeListFragment : TabFragment(), RecipeListAdapter.OnItemClickList
     override fun onLastItemShown() {
     }
 
-    protected fun initRecyclerView(recyclerView: RecyclerView) {
+    protected fun initRecyclerView(recyclerView: RecyclerView, paginated: Boolean) {
         val columns = activity.resources.configuration.orientation
-
+        val onLastItemShownListener: RecipeListAdapter.OnLastItemShownListener? = if (paginated) this else null
         if (recipeListAdapter == null)
-            recipeListAdapter = RecipeListAdapter(this, this)
+            recipeListAdapter = RecipeListAdapter(onLastItemShownListener, this)
 
         recipeRecyclerView = recyclerView
         recipeRecyclerView.layoutManager = GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)

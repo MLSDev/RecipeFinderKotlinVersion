@@ -7,26 +7,17 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.annotation.Nullable
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CoordinatorLayout
-import android.support.v4.app.DialogFragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-
+import android.view.*
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 import com.mlsdev.recipefinder.kotlinversion.databinding.FragmentSearchRecipesBinding
 import com.mlsdev.recipefinder.kotlinversion.di.Injectable
 import com.mlsdev.recipefinder.kotlinversion.view.ActionListener
 import com.mlsdev.recipefinder.kotlinversion.view.fragment.RecipeListFragment
-
 import javax.inject.Inject
 
 class SearchRecipeFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemShownListener,
@@ -38,7 +29,7 @@ class SearchRecipeFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemS
     }
 
     private lateinit var binding: FragmentSearchRecipesBinding
-    private lateinit var filterMenuItem: MenuItem
+    private var filterMenuItem: MenuItem? = null
     private var viewModel: SearchViewModel? = null
 
     @Inject
@@ -67,7 +58,7 @@ class SearchRecipeFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemS
 
         binding.searchView.setOnSearchViewListener(viewModel)
 
-        initRecyclerView(binding.rvRecipeList)
+        initRecyclerView(binding.rvRecipeList, true)
         initSwipeRefreshLayout(binding.swipeToRefreshView, this)
 
         return binding.root
@@ -111,13 +102,15 @@ class SearchRecipeFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemS
 
     override fun onDataLoaded(recipes: List<Recipe>) {
         super.onDataLoaded(recipes)
-        filterMenuItem.isVisible = !recipes.isEmpty()
+        if (filterMenuItem != null)
+            filterMenuItem!!.isVisible = !recipes.isEmpty()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.options_menu, menu)
         filterMenuItem = menu.findItem(R.id.action_filter)
-        filterMenuItem.isVisible = recipeListAdapter!!.itemCount > 0
+        if (filterMenuItem != null)
+            filterMenuItem!!.isVisible = recipeListAdapter!!.itemCount > 0
         val item = menu.findItem(R.id.action_search)
         binding.searchView.setMenuItem(item)
     }

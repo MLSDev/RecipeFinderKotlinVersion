@@ -16,9 +16,10 @@ import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.adapter.BaseV
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.adapter.ProgressViewHolder
 
 class RecipeListAdapter(
-        val onLastItemShownListener: OnLastItemShownListener,
+        val onLastItemShownListener: OnLastItemShownListener?,
         val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<BaseViewHolder>() {
+    val itemsPerPage = 10
 
     companion object {
         const val ITEM = 0
@@ -53,13 +54,13 @@ class RecipeListAdapter(
         holder.bindViewModel()
 
         // if 1 item before the end of the list
-        if ((position == itemCount - 1) && isLoadMoreItems)
+        if ((position == itemCount - 1) && isLoadMoreItems && onLastItemShownListener != null)
             onLastItemShownListener.onLastItemShown()
     }
 
     override fun getItemCount(): Int {
         var itemCount = recipes.size
-        itemCount = if ((itemCount % 10 == 0) && (itemCount > 0) && isLoadMoreItems) itemCount + PROGRESS_VIEW else itemCount
+        itemCount = if ((itemCount >= itemsPerPage) && isLoadMoreItems && onLastItemShownListener != null) itemCount + PROGRESS_VIEW else itemCount
         return itemCount
     }
 
@@ -93,7 +94,7 @@ class RecipeListAdapter(
         }
 
         override fun bindViewModel() {
-            val recipe = recipes.get(adapterPosition)
+            val recipe = recipes[adapterPosition]
 
             if (binding.viewModel == null)
                 binding.viewModel = RecipeListItemViewModel(recipe)

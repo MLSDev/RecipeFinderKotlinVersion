@@ -25,7 +25,7 @@ class FavoriteRecipesFragment : RecipeListFragment(), RecipeListAdapter.OnLastIt
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite_recipes, container, false)
-        initRecyclerView(binding.rvRecipeList)
+        initRecyclerView(binding.rvRecipeList, false)
 
         if (viewModel == null)
             viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
