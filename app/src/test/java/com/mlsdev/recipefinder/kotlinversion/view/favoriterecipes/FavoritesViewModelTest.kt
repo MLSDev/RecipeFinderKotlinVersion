@@ -12,7 +12,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
-import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
@@ -20,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
 
 @RunWith(MockitoJUnitRunner::class)
-@Config(constants = BuildConfig::class, manifest = Config.NONE, sdk = intArrayOf(23))
+@Config(constants = BuildConfig::class, manifest = Config.NONE, sdk = intArrayOf(26))
 class FavoritesViewModelTest {
 
     @Mock
@@ -32,7 +31,6 @@ class FavoritesViewModelTest {
     @Mock
     lateinit var onDataLoadedListener: OnDataLoadedListener<List<Recipe>>
 
-    @InjectMocks
     lateinit var viewModel: FavoritesViewModel
 
     @Before

@@ -15,7 +15,7 @@ import javax.inject.Inject
 open class FavoritesViewModel @Inject
 constructor(context: Context, override var repository: DataRepository) : BaseViewModel(context), LifecycleObserver {
     private lateinit var onDataLoadedListener: OnDataLoadedListener<List<Recipe>>
-    val emptyViewVisibility = ObservableInt(View.VISIBLE)
+    val emptyViewVisibility: ObservableInt = ObservableInt(View.VISIBLE)
 
     fun setOnDataLoadedListener(onDataLoadedListener: OnDataLoadedListener<List<Recipe>>) {
         this.onDataLoadedListener = onDataLoadedListener

@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
 
 @RunWith(MockitoJUnitRunner::class)
-@Config(constants = BuildConfig::class, manifest = Config.NONE, sdk = intArrayOf(23))
+@Config(constants = BuildConfig::class, manifest = Config.NONE, sdk = intArrayOf(26))
 class DataRepositoryTest {
 
     @Mock
@@ -34,7 +34,7 @@ class DataRepositoryTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        `when`(localDataSource.getFavorites()).thenReturn(Flowable.just(ArrayList()))
+        `when`(localDataSource.getFavorites()).thenReturn(Flowable.just(ArrayList())!!)
         repository = DataRepository(localDataSource, remoteDataSource)
     }
 

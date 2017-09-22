@@ -51,15 +51,6 @@ android {
         sourceCompatibility 1.8
     }
 
-    sourceSets {
-        test.java.srcDirs += 'src/test/kotlin'
-        androidTest.java.srcDirs += 'src/androidTest/kotlin'
-    }
-
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-
 }
 
 ext {
@@ -83,9 +74,9 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:${SUPPORT_VERSION}"
 
     // Dagger
-    compile "com.google.dagger:dagger:${DAGGER_VERSION}"
-    compile "com.google.dagger:dagger-android:${DAGGER_VERSION}"
-    compile "com.google.dagger:dagger-android-support:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android-support:${DAGGER_VERSION}"
     kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
     kapt "com.google.dagger:dagger-android-processor:${DAGGER_VERSION}"
 
@@ -144,7 +135,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
 
-    androidTestCompile("com.android.support.test.espresso:espresso-contrib:${ESPRESSO_VERSION}") {
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:${ESPRESSO_VERSION}") {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude module: 'recyclerview-v7'
@@ -153,5 +144,5 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    kapt "com.android.databinding:compiler:3.0.0-beta6"
+    kapt "com.android.databinding:compiler:$plugin_version"
 }

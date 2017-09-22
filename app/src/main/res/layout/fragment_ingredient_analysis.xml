@@ -51,7 +51,7 @@
                                 android:inputType="textCapSentences"
                                 android:lines="1"
                                 android:maxLines="1"
-                                android:onEditorAction="@{viewModel.onEditorAction}"
+                                android:onEditorAction="@{viewModel::onEditorAction}"
                                 android:text="@={viewModel.ingredientText}"
                                 app:focused="@{viewModel.ingredientTextFocused}" />
 
@@ -62,7 +62,7 @@
                             style="@style/AnalyzeButtonStyle"
                             android:layout_below="@id/til_ingredient_input_holder"
                             android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:onClick="@{viewModel.onAnalyzeButtonClick}" />
+                            android:onClick="@{viewModel::onAnalyzeButtonClick}" />
                     </RelativeLayout>
 
                     <android.support.v7.widget.CardView
