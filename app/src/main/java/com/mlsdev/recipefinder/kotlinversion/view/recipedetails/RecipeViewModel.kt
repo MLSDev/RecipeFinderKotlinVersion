@@ -14,8 +14,6 @@ import com.mlsdev.recipefinder.kotlinversion.data.source.repository.DataReposito
 import com.mlsdev.recipefinder.kotlinversion.view.Extras
 import com.mlsdev.recipefinder.kotlinversion.view.utils.UtilsUI
 import com.mlsdev.recipefinder.kotlinversion.view.viewmodel.BaseViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RecipeViewModel @Inject
@@ -61,7 +59,7 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
         checkIsTheRecipeInFavorites()
     }
 
-    private fun getIngredientsAsString(ingredients: Collection<Ingredient>): String {
+    fun getIngredientsAsString(ingredients: Collection<Ingredient>): String {
         var ingredientsAsString = ""
 
         for (ingredient in ingredients) {
@@ -77,7 +75,7 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
         return ingredientsAsString
     }
 
-    private fun getLabelsAsString(labels: List<String>): String {
+    fun getLabelsAsString(labels: List<String>): String {
         var labelsAsString = ""
 
         for (label in labels) {
@@ -90,25 +88,19 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
         return labelsAsString
     }
 
-    fun onFavoriteButtonClick(view: View) {
+    fun onFavoriteButtonClick(view: View?) {
 
         if (favoriteImageStateChecked.get()) {
             repository.removeFromFavorites(recipe!!)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
                     .subscribe({ favoriteImageStateChecked.set(false) })
         } else {
             repository.addToFavorites(recipe!!)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
                     .subscribe({ favoriteImageStateChecked.set(true) })
         }
     }
 
-    private fun checkIsTheRecipeInFavorites() {
+    fun checkIsTheRecipeInFavorites() {
         repository.isInFavorites(recipe!!)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
                 .subscribe(object : BaseObserver<Boolean>() {
                     override fun onSuccess(exist: Boolean) {
                         favoriteImageStateChecked.set(exist)

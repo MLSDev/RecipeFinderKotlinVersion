@@ -48,6 +48,8 @@ open class LocalDataSource(val db: AppDatabase) : BaseDataSource(), DataSource {
             db.ingredientDao().insert(recipe.ingredients)
             db.recipeDao().insert(recipe)
         }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun removeFromFavorites(recipe: Recipe): Completable {
@@ -60,10 +62,14 @@ open class LocalDataSource(val db: AppDatabase) : BaseDataSource(), DataSource {
             db.nutrientDao().delete(recipe.totalNutrients.protein!!)
             db.ingredientDao().deleteByRecipeUri(recipe.uri)
         }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun isInFavorites(recipe: Recipe): Single<Boolean> {
         return db.recipeDao().loadByUri(recipe.uri)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .map { true }
                 .first(false)
     }

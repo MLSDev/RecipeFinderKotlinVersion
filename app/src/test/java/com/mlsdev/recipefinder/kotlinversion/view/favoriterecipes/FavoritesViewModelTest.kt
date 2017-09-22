@@ -15,10 +15,10 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
+import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, manifest = Config.NONE, sdk = intArrayOf(26))
 class FavoritesViewModelTest {
 

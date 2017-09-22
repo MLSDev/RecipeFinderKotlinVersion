@@ -65,15 +65,15 @@ open class DataRepository(local: DataSource, remote: DataSource) {
         return localDataSource.getFavorites()
     }
 
-    fun addToFavorites(recipe: Recipe): Completable {
+    open fun addToFavorites(recipe: Recipe): Completable {
         return localDataSource.addToFavorites(recipe)
     }
 
-    fun removeFromFavorites(recipe: Recipe): Completable {
+    open fun removeFromFavorites(recipe: Recipe): Completable {
         return localDataSource.removeFromFavorites(recipe)
     }
 
-    fun isInFavorites(recipe: Recipe): Single<Boolean> {
+    open fun isInFavorites(recipe: Recipe): Single<Boolean> {
         return localDataSource.isInFavorites(recipe)
     }
 
