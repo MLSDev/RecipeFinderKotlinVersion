@@ -9,8 +9,6 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.SingleSource
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 open class DataRepository(local: DataSource, remote: DataSource) {
     private val offset = 10
@@ -65,8 +63,6 @@ open class DataRepository(local: DataSource, remote: DataSource) {
 
     open fun getFavoriteRecipes(): Flowable<List<Recipe>> {
         return localDataSource.getFavorites()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
     }
 
     fun addToFavorites(recipe: Recipe): Completable {

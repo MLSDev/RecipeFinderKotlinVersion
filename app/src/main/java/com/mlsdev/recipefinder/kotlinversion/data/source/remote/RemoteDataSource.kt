@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RemoteDataSource : BaseDataSource, DataSource {
+open class RemoteDataSource : BaseDataSource, DataSource {
 
     private lateinit var searchRecipesService: SearchRecipesService
     private lateinit var nutritionAnalysisService: NutritionAnalysisService

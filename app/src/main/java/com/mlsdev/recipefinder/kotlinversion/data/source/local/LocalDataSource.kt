@@ -8,11 +8,15 @@ import com.mlsdev.recipefinder.kotlinversion.data.source.local.roomdb.AppDatabas
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 open class LocalDataSource(val db: AppDatabase) : BaseDataSource(), DataSource {
 
     override fun getFavorites(): Flowable<List<Recipe>> {
         return db.recipeDao().loadAll()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .map {
                     for (recipe in it) {
                         val totalNutrients: TotalNutrients = db.totalNutrientsDao().loadById(recipe.totalNutrientsId) ?: continue
