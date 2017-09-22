@@ -9,7 +9,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
-class LocalDataSource(val db: AppDatabase) : BaseDataSource(), DataSource {
+open class LocalDataSource(val db: AppDatabase) : BaseDataSource(), DataSource {
 
     override fun getFavorites(): Flowable<List<Recipe>> {
         return db.recipeDao().loadAll()

@@ -56,6 +56,10 @@ android {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
 
 ext {
@@ -64,6 +68,10 @@ ext {
     RETROFIT_VERSION = '2.3.0'
     OKHTTP_VERSION = '3.8.0'
     ANDROID_COMPONENTS_VERSION = '1.0.0-alpha9-1'
+    ESPRESSO_VERSION = '3.0.1'
+    ROBOLECTRIC_VERSION = '3.4.2'
+    MOCKITO_VERSION = '2.10.0'
+    SUPPORT_TEST_LIB_VERSION = '0.5'
 }
 
 dependencies {
@@ -115,10 +123,34 @@ dependencies {
 
     implementation "com.mlsdev.animatedrv:library:1.0.1"
 
+    // Unit tests
+    testImplementation "org.mockito:mockito-core:${MOCKITO_VERSION}"
+    testImplementation "org.robolectric:robolectric:${ROBOLECTRIC_VERSION}"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+
+    // UI tests
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation "com.android.support.test:runner:${SUPPORT_TEST_LIB_VERSION}"
+    androidTestImplementation "com.android.support.test:rules:${SUPPORT_TEST_LIB_VERSION}"
+    androidTestImplementation "com.android.support:support-annotations:${SUPPORT_VERSION}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${ESPRESSO_VERSION}"
+
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${ESPRESSO_VERSION}") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'support-annotations'
-    })
+        exclude module: 'recyclerview-v7'
+    }
+
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:${ESPRESSO_VERSION}") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     kapt "com.android.databinding:compiler:3.0.0-beta6"

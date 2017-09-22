@@ -11,7 +11,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 open class BaseViewModel(val context: Context) : ViewModel() {
-    protected open lateinit var repository: DataRepository
+    open lateinit var repository: DataRepository
     val subscriptions = CompositeDisposable()
     var actionListener: ActionListener? = null
 
