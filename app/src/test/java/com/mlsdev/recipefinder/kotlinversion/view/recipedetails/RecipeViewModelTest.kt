@@ -1,8 +1,11 @@
 package com.mlsdev.recipefinder.kotlinversion.view.recipedetails
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import com.mlsdev.recipefinder.kotlinversion.BuildConfig
+import com.mlsdev.recipefinder.kotlinversion.R
+import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Ingredient
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 import com.mlsdev.recipefinder.kotlinversion.data.source.repository.DataRepository
 import com.mlsdev.recipefinder.kotlinversion.getRecipe
@@ -30,6 +33,9 @@ class RecipeViewModelTest {
     lateinit var context: Context
 
     @Mock
+    lateinit var resources: Resources
+
+    @Mock
     lateinit var repository: DataRepository
 
     lateinit var viewModel: RecipeViewModel
@@ -39,6 +45,7 @@ class RecipeViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
+        `when`(context.resources).thenReturn(resources)
         recipe = getRecipe()
         viewModel = RecipeViewModel(context, repository)
         val bundle = Bundle()
@@ -118,6 +125,30 @@ class RecipeViewModelTest {
         labels.removeAt(0)
         expectedResult = ""
         actualResult = viewModel.getLabelsAsString(labels)
+        assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun testGetIngredientsAsString() {
+        val ingredients = ArrayList<Ingredient>(2)
+        val ingredient = Ingredient()
+        ingredient.weight = 10.0
+        ingredient.text = "One"
+        ingredients.add(ingredient)
+        val ingredient1 = Ingredient()
+        ingredient1.weight = 15.0
+        ingredient1.text = "Two"
+        ingredients.add(ingredient1)
+
+        `when`(context.getString(R.string.ingredient_item, ingredient.text, UtilsUI.formatDecimalToString(ingredient.weight)))
+                .thenReturn("${ingredient.text}; Weight: ${UtilsUI.formatDecimalToString(ingredient.weight)}")
+
+        `when`(context.getString(R.string.ingredient_item, ingredient1.text, UtilsUI.formatDecimalToString(ingredient1.weight)))
+                .thenReturn("${ingredient1.text}; Weight: ${UtilsUI.formatDecimalToString(ingredient1.weight)}")
+
+        var expectedResult = "${ingredients[0].text}; Weight: ${UtilsUI.formatDecimalToString(ingredients[0].weight)},\n" +
+                "${ingredients[1].text}; Weight: ${UtilsUI.formatDecimalToString(ingredients[1].weight)}"
+        var actualResult = viewModel.getIngredientsAsString(ingredients)
         assertEquals(expectedResult, actualResult)
     }
 
