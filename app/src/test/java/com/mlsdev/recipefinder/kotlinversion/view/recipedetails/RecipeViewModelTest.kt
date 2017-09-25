@@ -8,7 +8,7 @@ import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Ingredient
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 import com.mlsdev.recipefinder.kotlinversion.data.source.repository.DataRepository
-import com.mlsdev.recipefinder.kotlinversion.getRecipe
+import getRecipe
 import com.mlsdev.recipefinder.kotlinversion.view.Extras
 import com.mlsdev.recipefinder.kotlinversion.view.utils.UtilsUI
 import io.reactivex.Completable

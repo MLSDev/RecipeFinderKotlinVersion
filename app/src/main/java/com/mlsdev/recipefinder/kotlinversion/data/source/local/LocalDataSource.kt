@@ -15,8 +15,6 @@ open class LocalDataSource(val db: AppDatabase) : BaseDataSource(), DataSource {
 
     override fun getFavorites(): Flowable<List<Recipe>> {
         return db.recipeDao().loadAll()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
                 .map {
                     for (recipe in it) {
                         val totalNutrients: TotalNutrients = db.totalNutrientsDao().loadById(recipe.totalNutrientsId) ?: continue

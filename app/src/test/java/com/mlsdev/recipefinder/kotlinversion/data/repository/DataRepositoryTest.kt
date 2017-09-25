@@ -9,6 +9,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
@@ -17,6 +18,8 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
+import setUpRxSchedulers
+
 
 @RunWith(MockitoJUnitRunner::class)
 @Config(constants = BuildConfig::class, manifest = Config.NONE, sdk = intArrayOf(26))
@@ -38,8 +41,17 @@ class DataRepositoryTest {
         repository = DataRepository(localDataSource, remoteDataSource)
     }
 
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun beforeClass() {
+            setUpRxSchedulers()
+        }
+    }
+
     @Test
     fun testGetFavoriteRecipes() {
+        `when`(localDataSource.getFavorites()).thenReturn(Flowable.just(emptyList()))
         repository.getFavoriteRecipes()
         verify(localDataSource, atLeastOnce()).getFavorites()
     }

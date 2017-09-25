@@ -7,6 +7,8 @@ import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.SearchResult
 import com.mlsdev.recipefinder.kotlinversion.data.source.BaseDataSource
 import com.mlsdev.recipefinder.kotlinversion.data.source.DataSource
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -62,6 +64,8 @@ open class RemoteDataSource : BaseDataSource, DataSource {
     override fun searchRecipes(params: Map<String, String>): Single<SearchResult> {
         setCredentials(params as MutableMap<String, String>, true)
         return searchRecipesService.searchRecipes(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun getIngredientData(params: Map<String, String>): Single<NutritionAnalysisResult> {

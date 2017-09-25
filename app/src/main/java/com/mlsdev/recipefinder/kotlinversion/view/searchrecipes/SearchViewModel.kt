@@ -9,6 +9,7 @@ import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import android.os.Bundle
 import android.support.v4.util.ArrayMap
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import com.claudiodegio.msv.OnSearchViewListener
@@ -21,9 +22,7 @@ import com.mlsdev.recipefinder.kotlinversion.view.listener.OnDataLoadedListener
 import com.mlsdev.recipefinder.kotlinversion.view.utils.ParamsHelper
 import com.mlsdev.recipefinder.kotlinversion.view.viewmodel.BaseViewModel
 import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class SearchViewModel @Inject
@@ -35,8 +34,7 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
     private lateinit var onDataLoadedListener: OnDataLoadedListener<List<Recipe>>
     private val searchParams = ArrayMap<String, String>()
     val isSearchOpened = ObservableBoolean(false)
-    private var query = ""
-//    private val recipes = ArrayList<Recipe>()
+    var query = ""
 
     fun setOnDataLoadedListener(onDataLoadedListener: OnDataLoadedListener<List<Recipe>>) {
         this.onDataLoadedListener = onDataLoadedListener
@@ -70,7 +68,7 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
 
         query = searchText
 
-        val prevSearchText = if (searchParams.containsKey(ParameterKeys.QUERY)) searchParams.get(ParameterKeys.QUERY) else ""
+        val prevSearchText = if (searchParams.containsKey(ParameterKeys.QUERY)) searchParams[ParameterKeys.QUERY] else ""
 
         if (forceUpdate || !(prevSearchText.equals(searchText.toLowerCase())))
             repository.cacheIsDirty = true
@@ -79,8 +77,6 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
         subscriptions.clear()
         searchLabelVisibility.set(View.INVISIBLE)
         repository.searchRecipes(searchParams)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
                 .subscribe(object : SearchRecipesObserver<List<Recipe>>() {
                     override fun onSuccess(recipeList: List<Recipe>) {
                         actionListener!!.showProgressDialog(false, null)
@@ -100,8 +96,6 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
         loadMoreProgressBarVisibility.set(View.VISIBLE)
 
         repository.loadMore(params)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
                 .subscribe(object : SearchRecipesObserver<List<Recipe>>() {
                     override fun onSuccess(recipeList: List<Recipe>) {
                         onDataLoadedListener.onMoreDataLoaded(recipeList)
@@ -142,6 +136,9 @@ constructor(context: Context, override var repository: DataRepository) : BaseVie
     }
 
     override fun onQueryTextSubmit(s: String): Boolean {
+        if (TextUtils.isEmpty(s))
+            return false
+
         actionListener!!.showProgressDialog(true, "Searching recipes for " + s)
         searchRecipes(s, true)
         return false

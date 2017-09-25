@@ -9,6 +9,8 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.SingleSource
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 open class DataRepository(local: DataSource, remote: DataSource) {
     private val offset = 10
@@ -19,7 +21,7 @@ open class DataRepository(local: DataSource, remote: DataSource) {
     private var cachedRecipes: MutableList<Recipe> = ArrayList()
     var cacheIsDirty = false
 
-    fun searchRecipes(params: MutableMap<String, String>): Single<List<Recipe>> {
+    open fun searchRecipes(params: MutableMap<String, String>): Single<List<Recipe>> {
         if (!cacheIsDirty)
             return Single.just(cachedRecipes)
 
@@ -33,7 +35,7 @@ open class DataRepository(local: DataSource, remote: DataSource) {
         return getRecipes(params)
     }
 
-    fun loadMore(params: MutableMap<String, String>): Single<List<Recipe>> {
+    open fun loadMore(params: MutableMap<String, String>): Single<List<Recipe>> {
 
         if (!more)
             return Single.amb(ArrayList<SingleSource<List<Recipe>>>())
@@ -63,6 +65,8 @@ open class DataRepository(local: DataSource, remote: DataSource) {
 
     open fun getFavoriteRecipes(): Flowable<List<Recipe>> {
         return localDataSource.getFavorites()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     open fun addToFavorites(recipe: Recipe): Completable {
