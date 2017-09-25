@@ -81,7 +81,7 @@ open class DataRepository(local: DataSource, remote: DataSource) {
         return localDataSource.isInFavorites(recipe)
     }
 
-    fun getIngredientData(params: Map<String, String>): Single<NutritionAnalysisResult> {
+    open fun getIngredientData(params: Map<String, String>): Single<NutritionAnalysisResult> {
         return remoteDataSource.getIngredientData(params)
     }
 

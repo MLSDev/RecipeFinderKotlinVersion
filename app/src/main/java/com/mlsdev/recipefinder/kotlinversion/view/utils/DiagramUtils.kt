@@ -10,7 +10,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.data.entity.nutrition.TotalNutrients
 
-class DiagramUtils(private val utilsUI: UtilsUI) {
+open class DiagramUtils(private val utilsUI: UtilsUI) {
 
     fun preparePieEntries(nutrients: TotalNutrients): ArrayList<PieEntry> {
         val entries: ArrayList<PieEntry> = ArrayList(3)

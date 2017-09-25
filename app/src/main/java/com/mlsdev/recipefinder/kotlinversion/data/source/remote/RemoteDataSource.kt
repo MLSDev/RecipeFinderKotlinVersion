@@ -71,6 +71,8 @@ open class RemoteDataSource : BaseDataSource, DataSource {
     override fun getIngredientData(params: Map<String, String>): Single<NutritionAnalysisResult> {
         setCredentials(params as MutableMap<String, String>, false)
         return nutritionAnalysisService.analyzeIngredient(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun getRecipeAnalysingResult(params: RecipeAnalysisParams): Single<NutritionAnalysisResult> {

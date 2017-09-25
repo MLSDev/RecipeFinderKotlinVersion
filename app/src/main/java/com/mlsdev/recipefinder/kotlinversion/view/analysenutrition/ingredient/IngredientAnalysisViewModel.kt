@@ -23,12 +23,10 @@ import com.mlsdev.recipefinder.kotlinversion.view.listener.OnIngredientAnalyzedL
 import com.mlsdev.recipefinder.kotlinversion.view.utils.DiagramUtils
 import com.mlsdev.recipefinder.kotlinversion.view.viewmodel.BaseViewModel
 import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class IngredientAnalysisViewModel @Inject
+open class IngredientAnalysisViewModel @Inject
 constructor(context: Context, diagramUtils: DiagramUtils, override var repository: DataRepository) : BaseViewModel(context), LifecycleObserver {
     private lateinit var onIngredientAnalyzedListener: OnIngredientAnalyzedListener
     private lateinit var keyboardListener: OnKeyboardStateChangedListener
@@ -45,7 +43,7 @@ constructor(context: Context, diagramUtils: DiagramUtils, override var repositor
     val proteinLabelVisibility = ObservableInt(View.GONE)
     val analysisResultsWrapperVisibility = ObservableInt(View.INVISIBLE)
     val ingredientTextFocused = ObservableBoolean(false)
-    private var totalNutrients: TotalNutrients ? = null
+    private var totalNutrients: TotalNutrients? = null
     private val diagramUtils = diagramUtils
 
     fun setKeyboardListener(keyboardListener: OnKeyboardStateChangedListener) {
@@ -87,8 +85,6 @@ constructor(context: Context, diagramUtils: DiagramUtils, override var repositor
         val params: ArrayMap<String, String> = ArrayMap()
         params.put(ParameterKeys.INGREDIENT, ingredientText.get())
         repository.getIngredientData(params)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
                 .subscribe(object : SingleObserver<NutritionAnalysisResult> {
 
                     override fun onSubscribe(d: Disposable) {
@@ -136,7 +132,7 @@ constructor(context: Context, diagramUtils: DiagramUtils, override var repositor
         }
     }
 
-    private fun prepareDiagramData(nutrients: TotalNutrients?) {
+    open fun prepareDiagramData(nutrients: TotalNutrients?) {
         if (nutrients == null)
             return
 
