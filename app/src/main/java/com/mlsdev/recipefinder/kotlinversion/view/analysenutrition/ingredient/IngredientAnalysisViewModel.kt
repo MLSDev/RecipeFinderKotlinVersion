@@ -43,7 +43,7 @@ constructor(context: Context, diagramUtils: DiagramUtils, override var repositor
     val proteinLabelVisibility = ObservableInt(View.GONE)
     val analysisResultsWrapperVisibility = ObservableInt(View.INVISIBLE)
     val ingredientTextFocused = ObservableBoolean(false)
-    private var totalNutrients: TotalNutrients? = null
+    var totalNutrients: TotalNutrients? = null
     private val diagramUtils = diagramUtils
 
     fun setKeyboardListener(keyboardListener: OnKeyboardStateChangedListener) {
@@ -64,7 +64,7 @@ constructor(context: Context, diagramUtils: DiagramUtils, override var repositor
         Log.d("RF", "lifecycle stop")
     }
 
-    fun onAnalyzeButtonClick(view: View?) {
+    open fun onAnalyzeButtonClick(view: View?) {
         keyboardListener.hideKeyboard()
 
         if (ingredientText.get().isEmpty()) {
@@ -121,7 +121,7 @@ constructor(context: Context, diagramUtils: DiagramUtils, override var repositor
 
     }
 
-    fun onEditorAction(textView: TextView, actionId: Int, keyEvent: KeyEvent): Boolean {
+    fun onEditorAction(textView: TextView?, actionId: Int, keyEvent: KeyEvent?): Boolean {
 
         return if (actionId == KeyEvent.ACTION_DOWN || actionId == EditorInfo.IME_ACTION_DONE) {
             onAnalyzeButtonClick(null)

@@ -27,7 +27,7 @@ abstract class BaseFragment : LifecycleFragment(), ActionListener {
         (activity as BaseActivity).showSnackbar(message, action, listener)
     }
 
-    override fun showSnackbar(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener) {
+    override fun showSnackbar(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener?) {
         (activity as BaseActivity).showSnackbar(message, action, listener)
     }
 }

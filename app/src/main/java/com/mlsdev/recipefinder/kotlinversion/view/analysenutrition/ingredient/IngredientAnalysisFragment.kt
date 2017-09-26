@@ -51,7 +51,7 @@ class IngredientAnalysisFragment : BaseFragment(), OnIngredientAnalyzedListener,
         binding.etIngredientInput.clearFocus()
     }
 
-    override fun onIngredientAnalyzed(diagramData: PieData) {
+    override fun onIngredientAnalyzed(diagramData: PieData?) {
         diagramUtils.setData(binding.pieChart, diagramData)
     }
 

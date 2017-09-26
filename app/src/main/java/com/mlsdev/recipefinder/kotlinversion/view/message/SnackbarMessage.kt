@@ -16,7 +16,7 @@ class SnackbarMessage(activity: BaseActivity) : Message(activity) {
         showSnackbar(message, null, null)
     }
 
-    fun showSnackbar(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener) {
+    fun showSnackbar(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener?) {
         showSnackbar(activity.getString(message), activity.getString(action), listener)
     }
 

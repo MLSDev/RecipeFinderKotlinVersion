@@ -12,7 +12,10 @@ import com.mlsdev.recipefinder.kotlinversion.data.entity.nutrition.TotalNutrient
 
 open class DiagramUtils(private val utilsUI: UtilsUI) {
 
-    fun preparePieEntries(nutrients: TotalNutrients): ArrayList<PieEntry> {
+    open fun preparePieEntries(nutrients: TotalNutrients?): ArrayList<PieEntry> {
+        if (nutrients == null)
+            return emptyList<PieEntry>() as ArrayList<PieEntry>
+
         val entries: ArrayList<PieEntry> = ArrayList(3)
         if (nutrients.protein != null)
             entries.add(PieEntry(nutrients.protein!!.quantity.toFloat(), nutrients.protein!!.label))
@@ -24,7 +27,7 @@ open class DiagramUtils(private val utilsUI: UtilsUI) {
         return entries
     }
 
-    fun preparePieChart(pieChart: PieChart): PieChart {
+    open fun preparePieChart(pieChart: PieChart): PieChart {
         pieChart.setUsePercentValues(true)
         pieChart.description.isEnabled = false
         pieChart.setExtraOffsets(5F, 10F, 5F, 5F)
@@ -59,7 +62,7 @@ open class DiagramUtils(private val utilsUI: UtilsUI) {
         return pieChart
     }
 
-    fun createPieDataSet(pieEntryList: List<PieEntry>, label: String?, colors: List<Int>?): PieDataSet {
+    open fun createPieDataSet(pieEntryList: List<PieEntry>?, label: String?, colors: List<Int>?): PieDataSet {
         val pieDataSet = PieDataSet(pieEntryList, label)
         pieDataSet.sliceSpace = 1.5f
         pieDataSet.selectionShift = 2f
@@ -77,7 +80,7 @@ open class DiagramUtils(private val utilsUI: UtilsUI) {
         return pieDataSet
     }
 
-    fun createPieData(pieDataSet: PieDataSet): PieData {
+    open fun createPieData(pieDataSet: PieDataSet): PieData {
         val pieData = PieData(pieDataSet)
         pieData.setValueFormatter(PercentFormatter())
         pieData.setValueTextSize(15f)
@@ -85,7 +88,10 @@ open class DiagramUtils(private val utilsUI: UtilsUI) {
         return pieData
     }
 
-    fun setData(pieChart: PieChart, pieData: PieData) {
+    fun setData(pieChart: PieChart, pieData: PieData?) {
+        if (pieData == null)
+            return
+
         pieChart.data = pieData
         pieChart.highlightValue(null)
         pieChart.invalidate()

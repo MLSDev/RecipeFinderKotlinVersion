@@ -15,6 +15,6 @@ interface ActionListener {
 
     fun showSnackbar(message: String, action: String, listener: View.OnClickListener)
 
-    fun showSnackbar(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener)
+    fun showSnackbar(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener?)
 
 }

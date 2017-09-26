@@ -1,5 +1,5 @@
-
 import com.google.gson.Gson
+import com.mlsdev.recipefinder.kotlinversion.data.entity.nutrition.NutritionAnalysisResult
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.SearchResult
 import org.robolectric.RuntimeEnvironment
@@ -14,6 +14,11 @@ fun getSearchResult(): List<Recipe> {
     val json = getJsonStringFromResources("search_result.json")
     val searchResult = Gson().fromJson(json, SearchResult::class.java)
     return searchResult.hits.mapTo(ArrayList(), { it.recipe })
+}
+
+fun getNutrientAnalysisResult(): NutritionAnalysisResult {
+    val json = getJsonStringFromResources("nutrient_analysis_result.json")
+    return Gson().fromJson(json, NutritionAnalysisResult::class.java)
 }
 
 fun getJsonStringFromResources(fileName: String): String? {
