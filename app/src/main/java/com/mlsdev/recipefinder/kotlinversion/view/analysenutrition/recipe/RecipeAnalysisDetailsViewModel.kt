@@ -17,7 +17,7 @@ import com.mlsdev.recipefinder.kotlinversion.view.utils.DiagramUtils
 import com.mlsdev.recipefinder.kotlinversion.view.viewmodel.BaseViewModel
 import javax.inject.Inject
 
-class RecipeAnalysisDetailsViewModel @Inject
+open class RecipeAnalysisDetailsViewModel @Inject
 constructor(context: Context, private val diagramUtils: DiagramUtils) : BaseViewModel(context), LifecycleObserver {
 
     val calories = ObservableField<String>()
@@ -41,19 +41,23 @@ constructor(context: Context, private val diagramUtils: DiagramUtils) : BaseView
         Log.d("RF", "lifecycle stop")
     }
 
-    fun setData(recipeAnalysingData: Bundle) {
-        val nutritionAnalysisResult: NutritionAnalysisResult = recipeAnalysingData
-                .getParcelable(RecipeAnalysisDetailsActivity.RECIPE_ANALYSING_RESULT_KEY)
+    open fun setData(recipeAnalysingData: Bundle) {
+        val nutritionAnalysisResult: NutritionAnalysisResult?
+
+        if (recipeAnalysingData.containsKey(RecipeAnalysisDetailsActivity.RECIPE_ANALYSING_RESULT_KEY))
+            nutritionAnalysisResult = recipeAnalysingData.getParcelable(RecipeAnalysisDetailsActivity.RECIPE_ANALYSING_RESULT_KEY)
+        else
+            return
 
         showResults(nutritionAnalysisResult)
     }
 
-    private fun showResults(nutritionAnalysisResult: NutritionAnalysisResult?) {
+    open fun showResults(nutritionAnalysisResult: NutritionAnalysisResult?) {
         if (nutritionAnalysisResult == null)
             return
 
-        calories.set(context.getString(R.string.calories, nutritionAnalysisResult.calories))
-        yields.set(context.getString(R.string.yields, nutritionAnalysisResult.yields.toString()))
+        calories.set(context.resources.getString(R.string.calories, nutritionAnalysisResult.calories))
+        yields.set(context.resources.getString(R.string.yields, nutritionAnalysisResult.yields.toString()))
 
         val pieEntries = diagramUtils.preparePieEntries(nutritionAnalysisResult.totalNutrients)
         chartVisibility.set(if (pieEntries.isEmpty()) View.GONE else View.VISIBLE)

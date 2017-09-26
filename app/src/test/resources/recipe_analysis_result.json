@@ -1,0 +1,43 @@
+{
+  "calories": 37,
+  "cautions": [
+  ],
+  "dietLabels": [
+  ],
+  "healthLabels": [
+  ],
+  "totalNutrients": {
+    "CHOCDF": {
+      "id": 0,
+      "label": "Carbs",
+      "quantity": 12.1626,
+      "unit": "g"
+    },
+    "carbsNutrientId": 0,
+    "ENERC_KCAL": {
+      "id": 0,
+      "label": "Energy",
+      "quantity": 37.845,
+      "unit": "kcal"
+    },
+    "energyNutrientId": 0,
+    "FAT": {
+      "id": 0,
+      "label": "Fat",
+      "quantity": 0.39149999999999996,
+      "unit": "g"
+    },
+    "fatNutrientId": 0,
+    "id": 0,
+    "PROCNT": {
+      "id": 0,
+      "label": "Protein",
+      "quantity": 1.4355,
+      "unit": "g"
+    },
+    "proteinNutrientId": 0
+  },
+  "totalWeight": 3130.5,
+  "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_9b98b8c8-6018-467b-b75e-597372a74199",
+  "yield": 12.0
+}

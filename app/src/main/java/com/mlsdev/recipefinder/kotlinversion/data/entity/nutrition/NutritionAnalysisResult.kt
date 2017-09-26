@@ -2,11 +2,13 @@ package com.mlsdev.recipefinder.kotlinversion.data.entity.nutrition
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 class NutritionAnalysisResult() : Parcelable {
     var uri: String = ""
     var calories: Int = 0
     var totalWeight: Double = 0.0
+    @SerializedName("yield")
     var yields: Double = 0.0
     var dietLabels: List<String> = ArrayList()
     var healthLabels: List<String> = ArrayList()

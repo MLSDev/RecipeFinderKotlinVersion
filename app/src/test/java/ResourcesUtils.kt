@@ -21,6 +21,11 @@ fun getNutrientAnalysisResult(): NutritionAnalysisResult {
     return Gson().fromJson(json, NutritionAnalysisResult::class.java)
 }
 
+fun getRecipeAnalysisResult(): NutritionAnalysisResult {
+    val json = getJsonStringFromResources("recipe_analysis_result.json")
+    return Gson().fromJson(json, NutritionAnalysisResult::class.java)
+}
+
 fun getJsonStringFromResources(fileName: String): String? {
     val context = RuntimeEnvironment.application
     var json: String? = null
