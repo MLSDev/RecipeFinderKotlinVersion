@@ -44,12 +44,10 @@ constructor(context: Context, private val diagramUtils: DiagramUtils) : BaseView
     open fun setData(recipeAnalysingData: Bundle) {
         val nutritionAnalysisResult: NutritionAnalysisResult?
 
-        if (recipeAnalysingData.containsKey(RecipeAnalysisDetailsActivity.RECIPE_ANALYSING_RESULT_KEY))
+        if (recipeAnalysingData.containsKey(RecipeAnalysisDetailsActivity.RECIPE_ANALYSING_RESULT_KEY)) {
             nutritionAnalysisResult = recipeAnalysingData.getParcelable(RecipeAnalysisDetailsActivity.RECIPE_ANALYSING_RESULT_KEY)
-        else
-            return
-
-        showResults(nutritionAnalysisResult)
+            showResults(nutritionAnalysisResult)
+        }
     }
 
     open fun showResults(nutritionAnalysisResult: NutritionAnalysisResult?) {
