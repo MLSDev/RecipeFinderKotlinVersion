@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.mlsdev.recipefinder.kotlinversion"
         minSdkVersion 16
@@ -16,6 +16,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
     buildTypes {
         debug {
@@ -51,6 +58,10 @@ android {
         sourceCompatibility 1.8
     }
 
+    kapt {
+        generateStubs = true
+    }
+
 }
 
 ext {
@@ -63,10 +74,12 @@ ext {
     ROBOLECTRIC_VERSION = '3.4.2'
     MOCKITO_VERSION = '2.10.0'
     SUPPORT_TEST_LIB_VERSION = '0.5'
+    DEXMARK_VERSION = '1.2'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:multidex:1.0.2'
 
     implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
     implementation "com.android.support:design:${SUPPORT_VERSION}"
@@ -123,6 +136,8 @@ dependencies {
 
     // UI tests
     androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation "com.google.dexmaker:dexmaker:${DEXMARK_VERSION}"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:${DEXMARK_VERSION}"
     androidTestImplementation "com.android.support.test:runner:${SUPPORT_TEST_LIB_VERSION}"
     androidTestImplementation "com.android.support.test:rules:${SUPPORT_TEST_LIB_VERSION}"
     androidTestImplementation "com.android.support:support-annotations:${SUPPORT_VERSION}"
