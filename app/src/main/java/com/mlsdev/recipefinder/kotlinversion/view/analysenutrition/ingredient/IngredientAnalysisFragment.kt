@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.github.mikephil.charting.data.PieData
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.databinding.FragmentIngredientAnalysisBinding
-import com.mlsdev.recipefinder.kotlinversion.di.Injectable
 import com.mlsdev.recipefinder.kotlinversion.view.MainActivity
 import com.mlsdev.recipefinder.kotlinversion.view.OnKeyboardStateChangedListener
 import com.mlsdev.recipefinder.kotlinversion.view.fragment.BaseFragment
@@ -19,7 +18,7 @@ import com.mlsdev.recipefinder.kotlinversion.view.utils.DiagramUtils
 import javax.inject.Inject
 
 class IngredientAnalysisFragment : BaseFragment(), OnIngredientAnalyzedListener,
-        OnKeyboardStateChangedListener, Injectable {
+        OnKeyboardStateChangedListener {
     private lateinit var binding: FragmentIngredientAnalysisBinding
     private var viewModel: IngredientAnalysisViewModel? = null
 

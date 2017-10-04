@@ -1,5 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.di.module
 
+import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.AnalyseNutritionFragment
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.ingredient.IngredientAnalysisFragment
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe.RecipeAnalysisFragment
 import com.mlsdev.recipefinder.kotlinversion.view.favoriterecipes.FavoriteRecipesFragment
@@ -26,4 +27,6 @@ abstract class FragmentBuilderModule {
     @ContributesAndroidInjector
     abstract fun contribureRecipeDetailsFragment(): RecipeDetailsFragment
 
+    @ContributesAndroidInjector
+    abstract fun contribureAnalyseNutritionFragment(): AnalyseNutritionFragment
 }

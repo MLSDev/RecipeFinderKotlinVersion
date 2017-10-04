@@ -1,12 +1,12 @@
 package com.mlsdev.recipefinder.kotlinversion.view.fragment
 
-import android.arch.lifecycle.LifecycleFragment
 import android.support.annotation.StringRes
 import android.view.View
 import com.mlsdev.recipefinder.kotlinversion.view.ActionListener
 import com.mlsdev.recipefinder.kotlinversion.view.BaseActivity
+import dagger.android.support.DaggerFragment
 
-abstract class BaseFragment : LifecycleFragment(), ActionListener {
+abstract class BaseFragment : DaggerFragment(), ActionListener {
 
     override fun onStartFilter() {
     }

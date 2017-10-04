@@ -11,13 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.databinding.FragmentRecipeDetailsBinding
-import com.mlsdev.recipefinder.kotlinversion.di.Injectable
 import com.mlsdev.recipefinder.kotlinversion.view.Extras
 import com.mlsdev.recipefinder.kotlinversion.view.MainActivity
 import com.mlsdev.recipefinder.kotlinversion.view.fragment.BaseFragment
 import javax.inject.Inject
 
-class RecipeDetailsFragment : BaseFragment(), Injectable {
+class RecipeDetailsFragment : BaseFragment() {
     private lateinit var binding: FragmentRecipeDetailsBinding
     private lateinit var viewModel: RecipeViewModel
 

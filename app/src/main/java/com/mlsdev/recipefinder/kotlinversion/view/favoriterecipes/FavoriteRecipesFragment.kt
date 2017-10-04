@@ -9,13 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.databinding.FragmentFavoriteRecipesBinding
-import com.mlsdev.recipefinder.kotlinversion.di.Injectable
 import com.mlsdev.recipefinder.kotlinversion.view.fragment.RecipeListFragment
 import com.mlsdev.recipefinder.kotlinversion.view.searchrecipes.RecipeListAdapter
 import javax.inject.Inject
 
-class FavoriteRecipesFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemShownListener,
-        Injectable {
+class FavoriteRecipesFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemShownListener {
     private lateinit var binding: FragmentFavoriteRecipesBinding
     private var viewModel: FavoritesViewModel? = null
 

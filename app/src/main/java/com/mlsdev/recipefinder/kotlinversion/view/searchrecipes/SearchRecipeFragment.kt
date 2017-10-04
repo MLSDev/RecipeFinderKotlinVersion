@@ -1,7 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.view.searchrecipes
 
 import android.app.Activity
-import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -15,14 +14,12 @@ import android.view.*
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 import com.mlsdev.recipefinder.kotlinversion.databinding.FragmentSearchRecipesBinding
-import com.mlsdev.recipefinder.kotlinversion.di.Injectable
 import com.mlsdev.recipefinder.kotlinversion.view.ActionListener
 import com.mlsdev.recipefinder.kotlinversion.view.fragment.RecipeListFragment
 import javax.inject.Inject
 
 class SearchRecipeFragment : RecipeListFragment(), RecipeListAdapter.OnLastItemShownListener,
-        SwipeRefreshLayout.OnRefreshListener, ActionListener, LifecycleOwner,
-        Injectable {
+        SwipeRefreshLayout.OnRefreshListener, ActionListener{
 
     companion object {
         const val FILTER_REQUEST_CODE = 0

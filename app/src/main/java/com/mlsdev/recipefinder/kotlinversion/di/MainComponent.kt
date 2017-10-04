@@ -5,12 +5,13 @@ import com.mlsdev.recipefinder.kotlinversion.RecipeApplication
 import com.mlsdev.recipefinder.kotlinversion.di.module.*
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(
-        AndroidInjectionModule::class,
+        AndroidSupportInjectionModule::class,
         AppModule::class,
         UtilsModule::class,
         DataSourceModule::class,
@@ -19,7 +20,7 @@ import javax.inject.Singleton
         MainActivityModule::class,
         RecipeAnalysisActivityModule::class,
         ViewModelModule::class))
-interface MainComponent {
+interface MainComponent : AndroidInjector<RecipeApplication>{
 
     @Component.Builder
     interface Builder {
@@ -28,7 +29,5 @@ interface MainComponent {
 
         fun build(): MainComponent
     }
-
-    fun inject(application: RecipeApplication)
 
 }

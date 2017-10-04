@@ -12,13 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.databinding.FragmentRecipeAnalysisBinding
-import com.mlsdev.recipefinder.kotlinversion.di.Injectable
 import com.mlsdev.recipefinder.kotlinversion.view.fragment.BaseFragment
 import com.mlsdev.recipefinder.kotlinversion.view.listener.OnDataLoadedListener
 import javax.inject.Inject
 
 class RecipeAnalysisFragment : BaseFragment(), OnAddIngredientClickListener,
-        OnDataLoadedListener<List<String>>, Injectable {
+        OnDataLoadedListener<List<String>> {
     private lateinit var binding: FragmentRecipeAnalysisBinding
     private lateinit var adapter: IngredientsAdapter
     private var viewModel: RecipeAnalysisViewModel? = null

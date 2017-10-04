@@ -1,12 +1,10 @@
 package com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe
 
 import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.github.mikephil.charting.data.PieData
 import com.mlsdev.recipefinder.kotlinversion.R
@@ -14,11 +12,9 @@ import com.mlsdev.recipefinder.kotlinversion.databinding.ActivityRecipeAnalysisD
 import com.mlsdev.recipefinder.kotlinversion.view.BaseActivity
 import com.mlsdev.recipefinder.kotlinversion.view.listener.OnDataLoadedListener
 import com.mlsdev.recipefinder.kotlinversion.view.utils.DiagramUtils
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class RecipeAnalysisDetailsActivity : BaseActivity(), HasSupportFragmentInjector, LifecycleRegistryOwner, OnDataLoadedListener<PieData> {
+class RecipeAnalysisDetailsActivity : BaseActivity(), OnDataLoadedListener<PieData> {
 
     companion object {
         const val RECIPE_ANALYSING_RESULT_KEY = "recipe_analysing_result"
@@ -29,7 +25,6 @@ class RecipeAnalysisDetailsActivity : BaseActivity(), HasSupportFragmentInjector
     private var viewModel: RecipeAnalysisDetailsViewModel? = null
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var diagramUtils: DiagramUtils
-    @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +51,6 @@ class RecipeAnalysisDetailsActivity : BaseActivity(), HasSupportFragmentInjector
             onBackPressed()
         return super.onOptionsItemSelected(item)
     }
-
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> = supportFragmentInjector
 
     override fun getLifecycle(): LifecycleRegistry = lifecycleRegistry
 

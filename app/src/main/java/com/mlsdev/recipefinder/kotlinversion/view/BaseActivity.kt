@@ -7,15 +7,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.support.annotation.StringRes
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.mlsdev.recipefinder.kotlinversion.view.message.ProgressDialogMessage
 import com.mlsdev.recipefinder.kotlinversion.view.message.SnackbarMessage
+import dagger.android.support.DaggerAppCompatActivity
 
 @SuppressLint("Registered")
-open class BaseActivity : AppCompatActivity(), NavigationController, ActionListener {
+open class BaseActivity : DaggerAppCompatActivity(), NavigationController, ActionListener {
     private lateinit var progressDialogMessage: ProgressDialogMessage
     private lateinit var snackbarMessage: SnackbarMessage
 

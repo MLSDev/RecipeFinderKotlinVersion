@@ -1,24 +1,20 @@
 package com.mlsdev.recipefinder.kotlinversion.view
 
 import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AlertDialog
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.databinding.ActivityMainBinding
 import dagger.android.AndroidInjection
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), LifecycleRegistryOwner, HasSupportFragmentInjector {
+class MainActivity : BaseActivity() {
 
     companion object {
         const val LOG_TAG = "RECIPE_FINDER"
@@ -27,9 +23,6 @@ class MainActivity : BaseActivity(), LifecycleRegistryOwner, HasSupportFragmentI
     private lateinit var binding: ActivityMainBinding
     private lateinit var broadcastReceiver: AppBroadcastReceiver
     private val lifecycleRegistry = LifecycleRegistry(this)
-
-    @Inject
-    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var bottomNavigationItemSelectedListener: BottomNavigationItemSelectedListener
@@ -62,8 +55,6 @@ class MainActivity : BaseActivity(), LifecycleRegistryOwner, HasSupportFragmentI
     }
 
     override fun getLifecycle(): LifecycleRegistry = lifecycleRegistry
-
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> = supportFragmentInjector
 
     inner class AppBroadcastReceiver : BroadcastReceiver() {
         val SHOW_ERROR_ACTION = "show_error"
