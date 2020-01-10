@@ -1,9 +1,9 @@
 package com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe
 
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.MenuItem
 import com.github.mikephil.charting.data.PieData

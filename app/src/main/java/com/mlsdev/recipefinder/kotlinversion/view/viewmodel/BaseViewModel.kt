@@ -1,6 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.view.viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import android.content.Context
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.data.source.BaseObserver

@@ -1,9 +1,9 @@
 package com.mlsdev.recipefinder.kotlinversion.view.bindingutils
 
 import android.animation.ObjectAnimator
-import android.databinding.BindingAdapter
-import android.support.design.widget.TextInputEditText
-import android.support.v4.widget.ContentLoadingProgressBar
+import androidx.databinding.BindingAdapter
+import com.google.android.material.textfield.TextInputEditText
+import androidx.core.widget.ContentLoadingProgressBar
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.mlsdev.recipefinder.kotlinversion.R

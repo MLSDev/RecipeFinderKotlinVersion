@@ -2,8 +2,8 @@ package com.mlsdev.recipefinder.kotlinversion.view.utils
 
 import android.content.Context
 import android.os.Build
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import java.text.DecimalFormat
 
 class UtilsUI(val context: Context) {

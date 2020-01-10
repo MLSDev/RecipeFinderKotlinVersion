@@ -1,6 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.data.source.local.roomdb.dao
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 import io.reactivex.Flowable
 

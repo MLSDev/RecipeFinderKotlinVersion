@@ -1,15 +1,15 @@
 package com.mlsdev.recipefinder.kotlinversion.view.searchrecipes
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.appbar.AppBarLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.appcompat.app.AppCompatActivity
 import android.view.*
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe

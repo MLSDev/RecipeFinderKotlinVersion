@@ -1,7 +1,7 @@
 package com.mlsdev.recipefinder.kotlinversion.di.module
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.ingredient.IngredientAnalysisViewModel
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe.RecipeAnalysisDetailsViewModel
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe.RecipeAnalysisViewModel

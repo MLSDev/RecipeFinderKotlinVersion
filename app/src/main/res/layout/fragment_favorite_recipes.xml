@@ -23,7 +23,7 @@
             app:layoutManagerReverse="false"
             app:layoutManagerType="linear" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_empty_list_view"
             style="@style/BaseTextViewStyle.EmptyListView"
             android:layout_centerInParent="true"

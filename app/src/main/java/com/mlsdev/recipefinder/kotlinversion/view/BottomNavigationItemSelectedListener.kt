@@ -1,12 +1,12 @@
 package com.mlsdev.recipefinder.kotlinversion.view
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
-import android.support.annotation.NonNull
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.annotation.NonNull
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import android.view.MenuItem
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.view.enums.TabItemType.*

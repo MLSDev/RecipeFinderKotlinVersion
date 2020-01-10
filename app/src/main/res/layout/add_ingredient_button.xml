@@ -8,7 +8,7 @@
             type="com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe.IngredientsAdapter.AddIngredientViewModel" />
     </data>
 
-    <android.support.v7.widget.AppCompatButton xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.AppCompatButton xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/btn_add_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

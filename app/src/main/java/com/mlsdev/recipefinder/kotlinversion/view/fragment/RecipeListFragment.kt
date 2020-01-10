@@ -4,10 +4,10 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.view.ViewCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.view.ViewCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.transition.Fade
 import android.transition.TransitionInflater
 import android.widget.ImageView

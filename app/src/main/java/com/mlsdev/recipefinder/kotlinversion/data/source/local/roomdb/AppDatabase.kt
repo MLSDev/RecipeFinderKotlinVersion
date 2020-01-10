@@ -1,7 +1,7 @@
 package com.mlsdev.recipefinder.kotlinversion.data.source.local.roomdb
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.mlsdev.recipefinder.kotlinversion.data.entity.nutrition.Nutrient
 import com.mlsdev.recipefinder.kotlinversion.data.entity.nutrition.TotalNutrients
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Ingredient

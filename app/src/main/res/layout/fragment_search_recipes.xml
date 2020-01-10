@@ -10,19 +10,19 @@
             type="com.mlsdev.recipefinder.kotlinversion.view.searchrecipes.SearchViewModel" />
     </data>
 
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/cl_search_recipes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusableInTouchMode="true"
         android:tag="@string/content_tag">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/appbar_height">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -30,7 +30,7 @@
                 app:title="Recipe Finder"
                 app:titleTextColor="@android:color/white" />
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <com.claudiodegio.msv.MaterialSearchView
             android:id="@+id/search_view"
@@ -38,18 +38,18 @@
             android:layout_height="wrap_content"
             android:elevation="5dip" />
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_to_refresh_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_recipe_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         <!--Labels-->
 
         <FrameLayout
@@ -80,5 +80,5 @@
                 android:text="@{viewModel.searchLabelText}" />
         </LinearLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

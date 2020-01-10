@@ -1,6 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.view.fragment
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.AnalyseNutritionFragment
 import com.mlsdev.recipefinder.kotlinversion.view.enums.TabItemType
 import com.mlsdev.recipefinder.kotlinversion.view.favoriterecipes.FavoriteRecipesFragment

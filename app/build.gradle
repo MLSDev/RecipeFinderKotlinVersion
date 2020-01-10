@@ -14,7 +14,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
     buildTypes {
@@ -63,12 +63,12 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    kapt "com.android.databinding:compiler:$gradle_version"
+    kapt "androidx.databinding:databinding-compiler:$gradle_version"
 
-    implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
-    implementation "com.android.support:design:${SUPPORT_VERSION}"
-    implementation "com.android.support:cardview-v7:${SUPPORT_VERSION}"
-    implementation "com.android.support:recyclerview-v7:${SUPPORT_VERSION}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     // Dagger
     implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
@@ -96,13 +96,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
 
     // Lifecycle
-    implementation "android.arch.lifecycle:extensions:${ANDROID_COMPONENTS_VERSION}"
-    kapt "android.arch.lifecycle:compiler:${ANDROID_COMPONENTS_VERSION}"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     // Room DB
-    implementation "android.arch.persistence.room:runtime:${ANDROID_COMPONENTS_VERSION}"
-    implementation "android.arch.persistence.room:rxjava2:${ANDROID_COMPONENTS_VERSION}"
-    kapt "android.arch.persistence.room:compiler:${ANDROID_COMPONENTS_VERSION}"
+    implementation 'androidx.room:room-runtime:2.0.0'
+    implementation 'androidx.room:room-rxjava2:2.0.0'
+    kapt 'androidx.room:room-compiler:2.0.0'
 
     //Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.1'
@@ -114,7 +114,7 @@ dependencies {
     // Unit tests
     testImplementation "org.mockito:mockito-core:${MOCKITO_VERSION}"
     testImplementation "org.robolectric:robolectric:${ROBOLECTRIC_VERSION}"
-    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation 'junit:junit:4.12'
 
@@ -122,19 +122,19 @@ dependencies {
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation "com.google.dexmaker:dexmaker:${DEXMARK_VERSION}"
     androidTestImplementation "com.google.dexmaker:dexmaker-mockito:${DEXMARK_VERSION}"
-    androidTestImplementation "com.android.support.test:runner:${SUPPORT_TEST_LIB_VERSION}"
-    androidTestImplementation "com.android.support.test:rules:${SUPPORT_TEST_LIB_VERSION}"
-    androidTestImplementation "com.android.support:support-annotations:${SUPPORT_VERSION}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${ESPRESSO_VERSION}"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.annotation:annotation:1.0.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
 
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:${ESPRESSO_VERSION}") {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
 
-    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:${ESPRESSO_VERSION}") {
+    androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude module: 'recyclerview-v7'

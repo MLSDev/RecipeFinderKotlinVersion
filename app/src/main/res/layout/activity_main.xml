@@ -25,7 +25,7 @@
             android:layout_above="@+id/bnv_navigation_view"
             android:background="@drawable/top_shadow" />
 
-        <android.support.design.widget.BottomNavigationView
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_navigation_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_bar_height"

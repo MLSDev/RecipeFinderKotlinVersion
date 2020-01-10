@@ -3,10 +3,10 @@ package com.mlsdev.recipefinder.kotlinversion.view.searchrecipes
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v7.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AlertDialog
 
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.databinding.DialogFragmentSearchFilterBinding

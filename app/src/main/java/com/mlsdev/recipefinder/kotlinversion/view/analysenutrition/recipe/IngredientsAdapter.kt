@@ -2,9 +2,9 @@ package com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
-import android.databinding.ObservableField
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

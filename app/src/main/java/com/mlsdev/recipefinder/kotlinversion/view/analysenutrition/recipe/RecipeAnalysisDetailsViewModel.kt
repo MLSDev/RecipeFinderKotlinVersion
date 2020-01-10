@@ -1,11 +1,11 @@
 package com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.recipe
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import android.content.Context
-import android.databinding.ObservableField
-import android.databinding.ObservableInt
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import android.os.Bundle
 import android.util.Log
 import android.view.View

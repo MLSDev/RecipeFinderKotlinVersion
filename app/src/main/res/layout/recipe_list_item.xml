@@ -10,7 +10,7 @@
             type="com.mlsdev.recipefinder.kotlinversion.view.searchrecipes.RecipeListItemViewModel" />
     </data>
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -26,7 +26,7 @@
             android:scaleType="centerCrop"
             app:imageUrl="@{viewModel.recipeImageUrl}" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_recipe_title"
             style="@style/BaseTextViewStyle.RecipeItemTextStyle"
             android:layout_height="100dp"
@@ -35,5 +35,5 @@
             android:paddingBottom="16dp"
             android:text="@{viewModel.recipeTitle}" />
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </layout>

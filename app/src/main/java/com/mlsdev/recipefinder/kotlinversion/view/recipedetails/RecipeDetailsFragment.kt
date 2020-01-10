@@ -1,11 +1,11 @@
 package com.mlsdev.recipefinder.kotlinversion.view.recipedetails
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.v4.view.ViewCompat
+import androidx.core.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

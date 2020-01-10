@@ -1,7 +1,7 @@
 package com.mlsdev.recipefinder.kotlinversion.data.source.local.roomdb.converter
 
-import android.arch.persistence.room.TypeConverter
-import android.arch.persistence.room.util.StringUtil
+import androidx.room.TypeConverter
+import androidx.room.util.StringUtil
 
 class Converter {
 

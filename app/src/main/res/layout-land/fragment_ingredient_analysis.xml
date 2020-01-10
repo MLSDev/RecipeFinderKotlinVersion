@@ -12,7 +12,7 @@
             type="com.mlsdev.recipefinder.kotlinversion.view.analysenutrition.ingredient.IngredientAnalysisViewModel" />
     </data>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -38,13 +38,13 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/til_ingredient_input_holder"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/hint_ingredient_analysis">
 
-                            <android.support.design.widget.TextInputEditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/et_ingredient_input"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                                 android:text="@={viewModel.ingredientText}"
                                 app:focused="@{viewModel.ingredientTextFocused}" />
 
-                        </android.support.design.widget.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
                         <LinearLayout
@@ -65,32 +65,32 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tv_ingredient_title"
                                 style="@style/BaseTextViewStyle.NutrientTextStyle"
                                 android:gravity="center"
                                 android:text="@{viewModel.nutrientText}"
                                 android:textSize="30sp" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tv_energy"
                                 style="@style/BaseTextViewStyle.NutrientTextStyle"
                                 android:text="@{viewModel.energyText}"
                                 android:visibility="@{viewModel.energyLabelVisibility}" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tv_fat"
                                 style="@style/BaseTextViewStyle.NutrientTextStyle"
                                 android:text="@{viewModel.fatText}"
                                 android:visibility="@{viewModel.fatLabelVisibility}" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tv_protein"
                                 style="@style/BaseTextViewStyle.NutrientTextStyle"
                                 android:text="@{viewModel.proteinText}"
                                 android:visibility="@{viewModel.proteinLabelVisibility}" />
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tv_carbs"
                                 style="@style/BaseTextViewStyle.NutrientTextStyle"
                                 android:text="@{viewModel.carbsText}"
@@ -98,7 +98,7 @@
 
                         </LinearLayout>
 
-                        <android.support.v7.widget.AppCompatButton
+                        <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_analyze_ingredient"
                             style="@style/AnalyzeButtonStyle"
                             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -126,5 +126,5 @@
             </ScrollView>
 
         </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

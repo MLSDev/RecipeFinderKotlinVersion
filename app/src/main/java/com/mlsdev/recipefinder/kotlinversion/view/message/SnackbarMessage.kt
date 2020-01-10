@@ -1,7 +1,7 @@
 package com.mlsdev.recipefinder.kotlinversion.view.message
 
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
+import androidx.annotation.StringRes
+import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import com.mlsdev.recipefinder.kotlinversion.R
 import com.mlsdev.recipefinder.kotlinversion.view.BaseActivity

@@ -1,6 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.view.searchrecipes
 
-import android.databinding.ObservableField
+import androidx.databinding.ObservableField
 import com.mlsdev.recipefinder.kotlinversion.data.entity.recipe.Recipe
 
 class RecipeListItemViewModel(

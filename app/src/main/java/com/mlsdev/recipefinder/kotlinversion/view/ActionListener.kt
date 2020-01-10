@@ -1,6 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.view
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.view.View
 
 interface ActionListener {

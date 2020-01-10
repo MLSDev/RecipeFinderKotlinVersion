@@ -1,6 +1,6 @@
 package com.mlsdev.recipefinder.kotlinversion.view.fragment
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.view.View
 import com.mlsdev.recipefinder.kotlinversion.view.ActionListener
 import com.mlsdev.recipefinder.kotlinversion.view.BaseActivity
